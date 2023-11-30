@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="p-2 m-2">
+
+    <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]" (onPageChange)="test($event)"></p-paginator>
+
+
+    <p-pickList [source]="indexedSourceProducts" [target]="targetProducts" sourceHeader="Available" targetHeader="Selected"
+        [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}"
+        filterBy="name" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" >
+        <ng-template let-product pTemplate="item">
+            <div class="product-item">
+                <div class="product-list-detail">
+                    <h5 class="mb-2">{{product.name}}</h5>
+                    <i class="pi pi-tag product-category-icon"></i>
+                    <span class="product-category">{{product.category}}</span>
+                </div>
+                <div class="product-list-action">
+                    <h6 class="mb-2">${{product.price}}</h6>
+                    <span
+                        [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                </div>
+            </div>
+        </ng-template>
+    </p-pickList>
+
+</div>
