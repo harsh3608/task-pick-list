@@ -1,11 +1,17 @@
 <div class="p-2 m-2">
 
-    <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]" (onPageChange)="test($event)"></p-paginator>
+    <div class="d-flex flex-row justify-content-between" style="width: 100%; ">
+        <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
+            (onPageChange)="sourcePaginator($event)"></p-paginator>
+        <p-paginator [rows]="2" [totalRecords]="targetProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
+            (onPageChange)="targetPaginator($event)"></p-paginator>
+    </div>
 
 
-    <p-pickList [source]="indexedSourceProducts" [target]="targetProducts" sourceHeader="Available" targetHeader="Selected"
-        [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}"
-        filterBy="name" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" >
+    <p-pickList [source]="indexedSourceProducts" [target]="targetProducts" sourceHeader="Available"
+        targetHeader="Selected" [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'300px'}"
+        [targetStyle]="{'height':'300px'}" filterBy="name" sourceFilterPlaceholder="Search by name"
+        targetFilterPlaceholder="Search by name">
         <ng-template let-product pTemplate="item">
             <div class="product-item">
                 <div class="product-list-detail">

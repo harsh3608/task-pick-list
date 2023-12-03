@@ -137,6 +137,7 @@ export class HomeComponent {
     }
   ];
   indexedSourceProducts: Product[] = [];
+  indexedTargetProducts: Product[] = [];
 
   targetProducts: Product[] = [];
 
@@ -158,14 +159,19 @@ export class HomeComponent {
   }
 
 
-  test(event: any) {
+  sourcePaginator(event: any) {
     console.log(event);
     this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
     console.log(this.indexedSourceProducts);
 
   }
 
+  targetPaginator(event: any) {
+    console.log(event);
+    this.indexedTargetProducts = this.targetProducts.slice(event.first, (event.first + event.rows));
+    console.log(this.targetProducts);
 
+  }
 
 }
 
