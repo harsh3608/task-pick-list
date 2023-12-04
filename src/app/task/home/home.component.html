@@ -3,6 +3,15 @@
     <div class="d-flex flex-row justify-content-between" style="width: 100%; ">
         <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
             (onPageChange)="sourcePaginator($event)"></p-paginator>
+            <!-- <div class="flex align-items-center justify-content-end">
+                <span class="mx-1 text-color">Items per page: </span>
+                <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2" (ngModelChange)="first2 = 0"></p-dropdown>
+                <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="sourceProducts.length" (onPageChange)="onPageChange2($event)" [showCurrentPageReport]="true" 
+                    currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false" [showFirstLastIcon]="false"></p-paginator>
+            </div> -->
+
+
+
         <p-paginator [rows]="2" [totalRecords]="targetProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
             (onPageChange)="targetPaginator($event)"></p-paginator>
     </div>

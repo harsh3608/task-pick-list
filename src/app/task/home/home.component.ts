@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-import { Product } from '../shared/product-models';
+import { PageEvent, Product } from '../shared/product-models';
 import { ProductService } from '../shared/product.service';
 import { PickListModule } from 'primeng/picklist';
 import { PaginatorModule } from 'primeng/paginator';
@@ -141,6 +141,14 @@ export class HomeComponent {
 
   targetProducts: Product[] = [];
 
+  first2: number = 0;
+  rows2: number = 2;
+  options = [
+    { label: 2, value: 2 },
+    { label: 3, value: 3 },
+    { label: 5, value: 5 }
+  ];
+
   constructor(private carService: ProductService, private primengConfig: PrimeNGConfig) { }
 
   ngOnInit() {
@@ -152,11 +160,17 @@ export class HomeComponent {
 
     this.targetProducts = [];
     this.primengConfig.ripple = true;
-    this.indexedSourceProducts = this.sourceProducts.slice(0,2);
+    this.indexedSourceProducts = this.sourceProducts.slice(0, 2);
     console.log(this.sourceProducts);
     console.log(this.indexedSourceProducts);
 
   }
+
+  onPageChange2(event: any) {
+    this.first2 = event.first;
+    this.rows2 = event.rows;
+    this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
+}
 
 
   sourcePaginator(event: any) {
