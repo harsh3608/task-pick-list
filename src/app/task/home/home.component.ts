@@ -141,13 +141,13 @@ export class HomeComponent {
 
   targetProducts: Product[] = [];
 
-  first2: number = 0;
-  rows2: number = 2;
-  options = [
-    { label: 2, value: 2 },
-    { label: 3, value: 3 },
-    { label: 5, value: 5 }
-  ];
+  // first2: number = 0;
+  // rows2: number = 2;
+  // options = [
+  //   { label: 2, value: 2 },
+  //   { label: 3, value: 3 },
+  //   { label: 5, value: 5 }
+  // ];
 
   constructor(private carService: ProductService, private primengConfig: PrimeNGConfig) { }
 
@@ -166,11 +166,11 @@ export class HomeComponent {
 
   }
 
-  onPageChange2(event: any) {
-    this.first2 = event.first;
-    this.rows2 = event.rows;
-    this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
-}
+  // onPageChange2(event: any) {
+  //   this.first2 = event.first;
+  //   this.rows2 = event.rows;
+  //   this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
+  // }
 
 
   sourcePaginator(event: any) {
