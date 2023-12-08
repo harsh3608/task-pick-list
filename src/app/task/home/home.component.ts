@@ -5,6 +5,8 @@ import { ProductService } from '../shared/product.service';
 import { PickListModule } from 'primeng/picklist';
 import { PaginatorModule } from 'primeng/paginator';
 import { log } from 'console';
+import { ChoicesService } from '../shared/choices.service';
+import { Choice } from '../shared/choices';
 
 @Component({
   selector: 'app-home',
@@ -138,25 +140,26 @@ export class HomeComponent {
   ];
   indexedSourceProducts: Product[] = [];
   indexedTargetProducts: Product[] = [];
-
   targetProducts: Product[] = [];
 
-  // first2: number = 0;
-  // rows2: number = 2;
-  // options = [
-  //   { label: 2, value: 2 },
-  //   { label: 3, value: 3 },
-  //   { label: 5, value: 5 }
-  // ];
+  sourceObjects: Choice[] = [];
+  indexedObjects: Choice[] = [];
 
-  constructor(private carService: ProductService, private primengConfig: PrimeNGConfig) { }
+  first2: number = 0;
+  rows2: number = 10;
+  options = [
+    { label: 10, value: 10 },
+    { label: 20, value: 20 },
+    { label: 50, value: 50 }
+  ];
+
+  constructor(
+    private carService: ProductService,
+    private primengConfig: PrimeNGConfig,
+    private objectService: ChoicesService
+  ) { }
 
   ngOnInit() {
-    // this.carService.getProductsSmall().then(
-    //   (products: Product[]) =>
-    //     this.sourceProducts = products,
-
-    // );
 
     this.targetProducts = [];
     this.primengConfig.ripple = true;
@@ -164,13 +167,32 @@ export class HomeComponent {
     console.log(this.sourceProducts);
     console.log(this.indexedSourceProducts);
 
+    this.indexedObjects = this.getObjects(this.first2, this.rows2);
+
   }
 
-  // onPageChange2(event: any) {
-  //   this.first2 = event.first;
-  //   this.rows2 = event.rows;
-  //   this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
-  // }
+  getObjects(index: number, rows: number) {
+    let objects: Choice[] = [];
+    this.objectService.getChoices(index, rows).subscribe(
+      (res) => {
+        console.log(res);
+        objects = res;
+        this.indexedObjects = res;
+        
+      }
+    );
+    
+    return objects;
+  }
+
+  onPageChange2(event: any) {
+    this.first2 = event.first;
+    this.rows2 = event.rows;
+    this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
+  
+  
+    //this.sourceObjects = ;
+  }
 
 
   sourcePaginator(event: any) {
