@@ -1,0 +1,18 @@
+/* .custom-picklist .ui-picklist-source-controls,
+.custom-picklist .ui-picklist-target-controls {
+  display: none !important;
+}
+ */
+
+
+
+ /* ::ng-deep .ui-picklist .p-picklist-buttons .p-picklist-target-controls  .p-picklist-source-controls{
+    display: none !important;
+ } */
+
+ .p-picklist-buttons .p-picklist-source-controls {
+    display: none !important;
+} 
+
+
+
