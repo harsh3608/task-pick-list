@@ -1,14 +1,21 @@
 <div class="p-2 m-2">
 
     <div class="d-flex flex-row justify-content-between" style="width: 100%; ">
+
         <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
             (onPageChange)="sourcePaginator($event)"></p-paginator>
-            <div class="d-flex flex align-items-center justify-content-end">
-                <span class="mx-1 text-color">Items per page: </span>
-                <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2" (ngModelChange)="first2 = 0" ></p-dropdown>
-                <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="sourceObjects.length" (onPageChange)="onPageChange2($event)" [showCurrentPageReport]="true" 
-                    currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false" [showFirstLastIcon]="true"></p-paginator>
-            </div>
+        <!-- <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
+            (onPageChange)="sourcePaginator($event)"></p-paginator> -->
+
+        <div class="d-flex flex align-items-center justify-content-end">
+            <span class="mx-1 text-color">Items per page: </span>
+            <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2"
+                (ngModelChange)="first2 = 0"></p-dropdown>
+            <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="sourceObjects.length"
+                (onPageChange)="onPageChange2($event)" [showCurrentPageReport]="true"
+                currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false"
+                [showFirstLastIcon]="true"></p-paginator>
+        </div>
 
 
 
@@ -17,10 +24,13 @@
     </div>
 
 
-    <p-pickList [source]="sourceObjects"  [target]="targetProducts" sourceHeader="Available"
-        targetHeader="Selected" [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'50px'}"
-        [targetStyle]="{'height':'50px'}" filterBy="name" sourceFilterPlaceholder="Search by name"
-        targetFilterPlaceholder="Search by name" class="custom-picklist" >
+    <p-pickList [source]="sourceObjects" [target]="targetProducts" sourceHeader="Available" targetHeader="Selected"
+        [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'50px'}" [targetStyle]="{'height':'50px'}"
+        filterBy="name" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name"
+        class="custom-picklist">
+    
+        targetFilterPlaceholder="Search by name">
+        >>>>>>> 276225d6bf32dd64b3a44857ecfb52366fc98986
         <ng-template let-object pTemplate="item">
             <!-- <div class="product-item">
                 <div class="product-list-detail">

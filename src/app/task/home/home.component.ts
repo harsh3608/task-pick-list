@@ -186,7 +186,7 @@ export class HomeComponent {
   }
 
   onPageChange2(event: any) {
-    
+
     this.first2 = event.first;
     this.rows2 = event.rows;
     this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
