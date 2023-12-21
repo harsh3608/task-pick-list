@@ -153,6 +153,9 @@ export class HomeComponent {
     { label: 50, value: 50 }
   ];
 
+  sourceStartIndex: number = 0;
+  sourceEndIndex: number = 10;
+
   constructor(
     private carService: ProductService,
     private primengConfig: PrimeNGConfig,
