@@ -1,12 +1,10 @@
 <div class="p-2 m-2">
 
-    <div class="d-flex flex-row justify-content-between" style="width: 100%; ">
-
-        <!-- <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
-            (onPageChange)="sourcePaginator($event)"></p-paginator> -->
-        <!-- <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
-            (onPageChange)="sourcePaginator($event)"></p-paginator> -->
-
+    <!-- <div class="d-flex flex-row justify-content-between" style="width: 100%; ">
+         <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
+            (onPageChange)="sourcePaginator($event)"></p-paginator> 
+         <p-paginator [rows]="2" [totalRecords]="sourceProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
+            (onPageChange)="sourcePaginator($event)"></p-paginator> 
         <div class="d-flex flex align-items-center justify-content-end">
             <span class="mx-1 text-color">Items per page: </span>
             <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2"
@@ -16,37 +14,100 @@
                 currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false"
                 [showFirstLastIcon]="true"></p-paginator>
         </div>
-
-
-
         <p-paginator [rows]="2" [totalRecords]="targetProducts.length" [rowsPerPageOptions]="[2,3,5,10]"
             (onPageChange)="targetPaginator($event)"></p-paginator>
+    </div> -->
+
+    <div class="d-flex justify-content-between mb-2">
+        <div class="d-flex align-items-center justify-content-end mx-4">
+            <span class="mx-1 text-color">Items per page: </span>
+            <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="sourceRows"
+                (ngModelChange)="changeSourceRows()">
+            </p-dropdown>
+            <div class="mx-4">
+                <p>{{sourceObjects.length=== 0 ? 0 : sourceStartIndex}} - {{sourceEndIndex < (totalCount -
+                        targetObjects.length) ? sourceEndIndex : (totalCount - targetObjects.length) }} of {{totalCount
+                        - targetObjects.length}}</p>
+            </div>
+
+            <!-- <button pButton icon="pi pi-angle-double-left" class="p-button-outlined p-button-info"
+                (click)="sourcePaginator(true,false,false,false)" [disabled]="sourceStartIndex===1"></button>
+            <button pButton icon="pi pi-angle-left" class="p-button-outlined p-button-info"
+                (click)="sourcePaginator(false,false,false,true)" [disabled]="sourceStartIndex===1"></button>
+
+            <button pButton icon="pi pi-angle-right" class="p-button-outlined p-button-info"
+                (click)="sourcePaginator(false,false,true,false)"
+                [disabled]="sourceStartIndex>=((totalCount-targetObjects.length)-sourceRows)"></button>
+            <button pButton icon="pi pi-angle-double-right" class="p-button-outlined p-button-info"
+                (click)="sourcePaginator(false,true,false,false)"
+                [disabled]="sourceStartIndex>=((totalCount-targetObjects.length)-sourceRows)"></button> -->
+
+
+            <button class="pi pi-angle-double-left btn btn-outline-primary mx-1"
+                (click)="sourcePaginator(true,false,false,false)" [disabled]="sourceStartIndex===1">
+            </button>
+            <button class="pi pi-angle-left btn btn-outline-primary mx-1"
+                (click)="sourcePaginator(false,false,false,true)" [disabled]="sourceStartIndex===1">
+
+            </button>
+            <button class="pi pi-angle-right btn btn-outline-primary mx-1"
+                (click)="sourcePaginator(false,false,true,false)"
+                [disabled]="sourceStartIndex>=((totalCount-targetObjects.length)-sourceRows)">
+
+            </button>
+            <button class="pi pi-angle-double-right btn btn-outline-primary mx-1"
+                (click)="sourcePaginator(false,true,false,false)"
+                [disabled]="sourceStartIndex>=((totalCount-targetObjects.length)-sourceRows)">
+
+            </button>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end mx-4">
+            <span class="mx-1 text-color">Items per page: </span>
+            <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="targetRows"
+                (ngModelChange)="changeTargetRows()">
+
+            </p-dropdown>
+            <div class="mx-4">
+                <p>{{targetObjects.length === 0 ? 0 : targetStartIndex}} - {{targetEndIndex < targetObjects.length?
+                        targetEndIndex: targetObjects.length}} of {{targetObjects.length}} </p>
+            </div>
+
+            <button pButton icon="pi pi-angle-double-left" class="p-button-outlined p-button-info"
+                (click)="targetPaginator(true,false,false,false)" [disabled]="targetStartIndex===1"></button>
+            <button pButton icon="pi pi-angle-left" class="p-button-outlined p-button-info"
+                (click)="targetPaginator(false,false,false,true)" [disabled]="targetStartIndex===1"></button>
+
+            <button pButton icon="pi pi-angle-right" class="p-button-outlined p-button-info"
+                (click)="targetPaginator(false,false,true,false)"
+                [disabled]="targetStartIndex>=((targetObjects.length)-targetRows)"></button>
+            <button pButton icon="pi pi-angle-double-right" class="p-button-outlined p-button-info"
+                (click)="targetPaginator(false,true,false,false)"
+                [disabled]="targetStartIndex>=((targetObjects.length)-targetRows)"></button>
+        </div> 
     </div>
 
-
-    <p-pickList [source]="sourceObjects" [target]="targetProducts" sourceHeader="Available" targetHeader="Selected"
-        [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'50px'}" [targetStyle]="{'height':'50px'}"
-        filterBy="name" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name"
-        class="custom-picklist">
-    
-        
-        <ng-template let-object pTemplate="item">
-            <!-- <div class="product-item">
-                <div class="product-list-detail">
-                    <h5 class="mb-2">{{product.name}}</h5>
-                    <i class="pi pi-tag product-category-icon"></i>
-                    <span class="product-category">{{product.category}}</span>
-                </div>
-                <div class="product-list-action">
-                    <h6 class="mb-2">${{product.price}}</h6>
-                    <span
-                        [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                </div>
-            </div> -->
-            <div>
-                <h6 class="mb-2">{{object.name}}</h6>
+    <p-pickList [source]="sourceObjects" [target]="indexedTargetObjects" sourceHeader="Available"
+        targetHeader="Selected" [dragdrop]="false" [responsive]="true" [sourceStyle]="{'height':'40vh'}"
+        [targetStyle]="{'height':'40vh'}" (onMoveToSource)="onMoveToSource($event)"
+        (onMoveAllToSource)="onMoveToSource($event)" (onMoveToTarget)="onMoveToTarget($event)"
+        (onMoveAllToTarget)="onMoveToTarget($event)" [showSourceFilter]="false" [showTargetFilter]="false"
+        [showSourceControls]="false" [showTargetControls]="false" filterBy="name"
+        sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name">
+        <!-- <ng-template let-object let-i="index" pTemplate="item">
+            <div class="flex">
+                <h6 class="mb-2">{{i}} {{object.name}}</h6>
+            </div>
+        </ng-template> -->
+        <!-- Source Template -->
+        <ng-template let-object let-i="index" pTemplate="sourceItem">
+            <div class="flex">
+                <h6 class="mb-2">{{i + (isTargetObject(object)? targetStartIndex:sourceStartIndex)}}.
+                    {{ object.name}}</h6>
             </div>
         </ng-template>
+
+
     </p-pickList>
 
 </div>
