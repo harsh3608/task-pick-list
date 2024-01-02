@@ -43,7 +43,7 @@ export class HomeComponent {
 
   ngOnInit() {
 
-    
+
 
   }
 
@@ -54,10 +54,10 @@ export class HomeComponent {
         console.log(res);
         objects = res;
         this.sourceObjects = res;
-        
+
       }
     );
-    
+
     return objects;
   }
 
@@ -141,9 +141,9 @@ export class HomeComponent {
 
   sourceTracker() {
     debugger;
-    if ( (this.sourceEndIndex === (this.totalCount - this.targetObjects.length)) ) {
+    if ((this.sourceEndIndex === (this.totalCount - this.targetObjects.length))) {
 
-      this.getSourceObjects(this.sourceStartIndex, ((this.sourceEndIndex-this.sourceStartIndex)+1) );
+      this.getSourceObjects(this.sourceStartIndex, ((this.sourceEndIndex - this.sourceStartIndex) + 1));
     } else {
       if (this.sourceObjects.length > this.sourceRows) {
         const newPageSize = this.sourceRows;
@@ -154,15 +154,15 @@ export class HomeComponent {
         //console.log('fetch', this.sourceRows-this.sourceObjects.length, 'more objects');
         const newPageSize = this.sourceRows + (this.sourceRows - this.sourceObjects.length);
         //if ((this.sourceStartIndex + newPageSize) > (this.totalCount - this.targetObjects.length)) {
-          this.getSourceObjects(this.sourceStartIndex, newPageSize);
+        this.getSourceObjects(this.sourceStartIndex, newPageSize);
         //};
-      }else if(this.sourceObjects.length===0) {
+      } else if (this.sourceObjects.length === 0) {
         const newPageSize = (this.totalCount)
         this.getSourceObjects(this.sourceStartIndex, newPageSize);
       }
     }
-    
-    
+
+
 
   }
 
@@ -186,6 +186,9 @@ export class HomeComponent {
     let endIndex = this.targetRows;
     this.targetEndIndex = endIndex;
     this.indexedTargetObjects = this.targetObjects.slice(this.targetStartIndex - 1, this.targetEndIndex);
+    // this.objectService.addTargetChoice('TargetChoices', this.targetObjects).subscribe((res) => {
+    //   console.log(res);
+    // });
 
   }
 
@@ -216,8 +219,8 @@ export class HomeComponent {
   //   this.first2 = event.first;
   //   this.rows2 = event.rows;
   //   this.indexedSourceProducts = (this.sourceProducts.slice(event.first, (event.first + event.rows))).filter(item => !this.targetProducts.includes(item));
-  
-  
+
+
   //   //this.sourceObjects = ;
   // }
 
