@@ -15,7 +15,7 @@ export class ChoicesService {
   getChoices(index: number, rows: number): Observable<Choice[]> {
     // Specify the type for the response
     return this.http.get<Choice[]>(`${this.apiUrl}/choices`).pipe(
-      map((choices: Choice[]) => {
+      map((choices: Choice[]) => { 
         // Calculate the start and end index for the desired range
         // const startIndex = index * rows;
         const startIndex = index ;
